@@ -5,7 +5,8 @@ trigger:
   paths:
     include:
     - cicdbots/echo-bot
-  stages:
+
+stages:
 - stage: Build
   jobs:
   - job: EchoBotBuild
@@ -34,7 +35,8 @@ trigger:
         workingDirectory: cicdbots/echo-bot
         arguments: '--configuration release --output "\$(Build.ArtifactStagingDirectory)" --no-restore'
         zipAfterPublish: false
-     - task: ArchiveFiles@2
+
+    - task: ArchiveFiles@2
       displayName: 'Archive EchoBot app'
       inputs:
         rootFolderOrFile: '\$(Build.ArtifactStagingDirectory)'
@@ -59,7 +61,7 @@ trigger:
         archiveFilePatterns: '*.zip'
         artifactName: 'drop-\$(Build.BuildId)'
 
-    - stage: Deploy
+- stage: Deploy
   dependsOn:
   - Build
   jobs:
@@ -78,7 +80,7 @@ trigger:
               ConnectionType: AzureRM
               ConnectedServiceName: 'ARMServiceConnection'
               ResourceGroupName: 'rg-cicd-bots'
-              WebAppName: 'appsvc-echo-bot-1'
+              WebAppName: '${APP_NAME_CICD_BOTS}'
               DeploymentType: runFromZip
               enableCustomDeployment: true
               packageForLinux: '\$(Pipeline.Workspace)/drop-\$(Build.BuildId)/echo-bot.zip'
