@@ -1,0 +1,40 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.11/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.11",
+    "version": "1.0.0",
+    "id": "${APP_ID_CICD_BOTS}",
+    "developer": {
+      "name": "EchoBot Sample",
+      "websiteUrl": "https://www.microsoft.com",
+      "privacyUrl": "https://www.teams.com/privacy",
+      "termsOfUseUrl": "https://www.teams.com/termsofuser"
+    },
+    "name": {
+      "short": "EchoBotSample"
+    },
+    "description": {
+      "short": "EchoBotSample",
+      "full": "The EchoBot Sample App"
+    },
+    "icons": {
+      "color": "color.png",
+      "outline": "outline.png"
+    },
+    "accentColor": "#FFFFFF",
+    "bots": [
+      {
+        "botId": "${APP_ID_CICD_BOTS}",
+        "scopes": [
+          "groupchat",
+          "team",
+          "personal"
+        ],
+        "supportsFiles": false,
+        "isNotificationOnly": false
+      }
+    ],
+    "permissions": [
+      "identity",
+      "messageTeamMembers"
+    ]
+  }
